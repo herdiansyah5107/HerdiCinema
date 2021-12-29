@@ -5,8 +5,13 @@
       <map>
         <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/card_captioned_image.xml" value="0.2" />
+        <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/fragment_action.xml" value="0.1" />
+        <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/fragment_horor.xml" value="0.1" />
         <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/fragment_pizza.xml" value="0.1" />
-        <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/fragment_top.xml" value="0.1" />
+        <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/fragment_sci_fi.xml" value="0.1" />
+        <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/fragment_stores.xml" value="0.25" />
+        <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/fragment_top.xml" value="0.33" />
         <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/layout/toolbar_main.xml" value="0.1" />
         <entry key="..\:/Bootcamp/Herdi_Cinema/app/src/main/res/menu/main_menu.xml" value="0.1" />
       </map>

@@ -2,6 +2,8 @@ package com.example.herdi_cinema;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +57,27 @@ public class TopFragment extends Fragment{
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top, container, false);
+        RecyclerView cinemaRecycler = (RecyclerView) inflater.inflate(
+                R.layout.fragment_top, container, false);
+        String[] cinemaName = new String[Film.top.length];
+        for (int i = 0; i < cinemaName.length; i++) {
+            cinemaName[i] = Film.top[i].getName();
+        }
+        int[] cinemaImage = new int[Film.top.length];
+        for (int i = 0; i < cinemaImage.length; i++) {
+            cinemaImage[i] = Film.top[i].getImageResourceId();
+        }
+//        return inflater.inflate(R.layout.fragment_horor, container, false);
+
+        CaptionedImageAdapter adapter = new CaptionedImageAdapter(cinemaName, cinemaImage);
+        cinemaRecycler.setAdapter(adapter);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);
+        cinemaRecycler.setLayoutManager(layoutManager);
+        return cinemaRecycler;
     }
 }
