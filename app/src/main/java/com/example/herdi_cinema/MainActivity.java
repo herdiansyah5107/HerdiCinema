@@ -1,24 +1,25 @@
 package com.example.herdi_cinema;
 
-
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
-import android.support.v7.app.ActionBar;
-
-import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.ShareActionProvider;
-import android.support.v4.view.MenuItemCompat;
-import com.example.bitsandpizza.R;
-
 
 public class MainActivity extends AppCompatActivity{
     private ShareActionProvider shareActionProvider;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +28,19 @@ public class MainActivity extends AppCompatActivity{
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //Attach the SectionsPagerAdapter to the ViewPager
+        SectionsPagerAdapter pagerAdapter =
+                new SectionsPagerAdapter(getSupportFragmentManager());
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(pagerAdapter);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        NestedScrollView scrollView = (NestedScrollView) findViewById(R.id.nestedScrollView);
+        scrollView.setFillViewport(true);
+
+        //Attach the ViewPager to the TabLayout
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -40,7 +49,7 @@ public class MainActivity extends AppCompatActivity{
         MenuItem menuItem = menu.findItem(R.id.action_share);
         shareActionProvider =
                 (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
-        setShareActionIntent("Want to join me for pizza?");
+        setShareActionIntent("Nonton yuk ?");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -50,25 +59,29 @@ public class MainActivity extends AppCompatActivity{
         intent.putExtra(Intent.EXTRA_TEXT, text);
         shareActionProvider.setShareIntent(intent);
     }
-        @Override
-        public boolean onOptionsItemSelect(MenuItem item){
-        switch (item.getItemId()){
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.action_create_order:
-                Intent intent = new Intent(this, BookingActivity.class);
-                startActivity(Intent);
+                Intent intent = new Intent(this, OrderActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-}
+    }
+
     private static class SectionsPagerAdapter extends FragmentPagerAdapter{
+        private SQLiteDatabase db;
+        private Cursor favoritesCursor;
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public int getCount() {
-
             return 4;
         }
 
@@ -80,7 +93,7 @@ public class MainActivity extends AppCompatActivity{
                 case 1:
                     return new HororFragment();
                 case 2:
-                    return new ActionFragment();
+                    return new AdventureFragment();
                 case 3:
                     return new SciFiFragment();
             }
@@ -94,11 +107,12 @@ public class MainActivity extends AppCompatActivity{
                 case 1:
                     return "Horor";
                 case 2:
-                    return "Action";
+                    return "Adventure";
                 case 3:
                     return "Sci-Fi";
             }
             return null;
         }
-}
+    }
+
 }

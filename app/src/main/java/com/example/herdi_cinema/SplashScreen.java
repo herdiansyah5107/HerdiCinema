@@ -1,12 +1,9 @@
 package com.example.herdi_cinema;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-
-import com.example.bitsandpizza.R;
 
 
 public class SplashScreen extends AppCompatActivity{
@@ -25,6 +22,6 @@ public class SplashScreen extends AppCompatActivity{
                     // close this activity
                     finish();
                 }
-            }, 3000);
+            }, 4000);
         }
     }
